@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "supabase-rls-check": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "supabase-rls-check[mcp] @ git+https://github.com/Tthanh2k6/supabase-rls-check@v0.2.0",
+        "supabase-rls-check",
+        "mcp"
+      ]
+    }
+  }
+}

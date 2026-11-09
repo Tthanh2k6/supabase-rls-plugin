@@ -1,0 +1,13 @@
+{
+  "name": "supabase-rls",
+  "displayName": "Supabase RLS Check",
+  "version": "0.1.0",
+  "description": "Rules, a quick-check skill and a read-only MCP server that catch Supabase Row Level Security mistakes before launch.",
+  "author": {
+    "name": "Trung Thanh Tran"
+  },
+  "homepage": "https://github.com/Tthanh2k6/supabase-rls-plugin",
+  "license": "MIT",
+  "keywords": ["supabase", "postgres", "rls", "row-level-security", "security", "mcp"],
+  "logo": "assets/logo.svg"
+}

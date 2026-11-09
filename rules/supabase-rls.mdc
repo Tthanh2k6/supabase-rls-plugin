@@ -1,0 +1,16 @@
+---
+description: Row Level Security rules for Supabase SQL migrations and policies
+globs: ["supabase/migrations/**/*.sql", "**/*.sql"]
+alwaysApply: false
+---
+
+When writing or editing Supabase SQL (tables, policies, functions, views):
+
+- Every new table in `public` gets `alter table ... enable row level security;` in the same migration, followed by policies for the access the app actually needs.
+- Never write a policy whose `using` or `with check` is just `true` unless the table is meant to be public, and say so in a comment.
+- Write ownership checks as `(select auth.uid()) = user_id`, not `auth.uid() = user_id`, so Postgres evaluates the call once per query. Index the ownership column.
+- Do not base authorization on `user_metadata` from the JWT. Users can edit it. Use `app_metadata` or a table the user cannot write.
+- `security definer` functions in `public` get `set search_path = ''`, schema-qualified names, and `revoke execute ... from public, anon` unless anonymous callers really need them.
+- Views in `public` use `with (security_invoker = true)`. Never expose `auth.users` through a view or materialized view.
+- Storage buckets holding user files are private, with per-user folder policies on `storage.objects`.
+- The `service_role` key never goes into frontend code, agent prompts or MCP configs.
