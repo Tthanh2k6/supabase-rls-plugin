@@ -15,4 +15,6 @@ When writing or editing Supabase SQL (tables, policies, functions, views):
 - `security definer` functions in `public` get `set search_path = ''`, schema-qualified names, and `revoke execute ... from public, anon` unless anonymous callers really need them.
 - Views in `public` use `with (security_invoker = true)`. Never expose `auth.users` through a view or materialized view.
 - Storage buckets holding user files are private, with per-user folder policies on `storage.objects`.
+- `security definer` functions that take a `user_id`/`org_id`-style argument derive the caller from `auth.uid()` (or check membership) instead of trusting the argument; otherwise any signed-in user can pass someone else's id through `/rest/v1/rpc`.
+- Secret-looking columns (`api_key`, `access_token`, `client_secret`, ...) do not live in `public` tables that `anon`/`authenticated` can select; use Supabase Vault, a private schema or a server-only function.
 - The `service_role` key (or an `sb_secret_` key) never goes into frontend code, public env variables (`EXPO_PUBLIC_`, `NEXT_PUBLIC_`, `VITE_`), agent prompts or MCP configs.
