@@ -4,7 +4,7 @@
       "command": "uvx",
       "args": [
         "--from",
-        "supabase-rls-check[mcp]==0.6.0",
+        "supabase-rls-check[mcp]==0.6.3",
         "supabase-rls-check",
         "mcp"
       ]

@@ -1,7 +1,7 @@
 {
   "name": "supabase-rls",
   "displayName": "Supabase RLS Check",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Rules, a quick-check skill and a read-only MCP server that catch Supabase Row Level Security mistakes before launch.",
   "author": {
     "name": "Trung Thanh Tran"
